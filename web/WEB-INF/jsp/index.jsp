@@ -10,6 +10,8 @@
 
     <body>
         <form action="Login">
+            <label >Bem vindo ao Easy Life </label>
+            
             <label>Login</label>
             <input type="text" name="login" value="" /><br>
             <br> 
