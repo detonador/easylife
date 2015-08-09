@@ -5,22 +5,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <title> Pagina inicial do Easy Life </title>
     </head>
 
     <body>
-        <form action="Login">
-            <label >Bem vindo ao Easy Life </label>
-            
+        <!-- formulario conectado a classe servlet de login utilizando o metodo post-->   
+        <form action="Login" method="GET">
+            <label >Bem vindo ao Easy Life </label><br><br><br>
+
             <label>Login</label>
-            <input type="text" name="login" value="" /><br>
+            <!-- a função required serve para avizar que é obrigatório o preenchimento do campo -->
+            <input type="text" required="true" name="login" value="" /><br>
             <br> 
             <label>Senha</label>
-            <input type="password" name="Senha " value="" />
-            
+            <input type="password" required="true" name="senha " value="" />
+
             <br>
             <br>
             <input type="submit" value="Entrar" name="entrar" />
+
+            <td colspan="2"> digite sua senha</td><br> 
         </form>
     </body>
 </html>

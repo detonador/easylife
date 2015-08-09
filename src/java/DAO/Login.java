@@ -5,10 +5,11 @@
  */
 package DAO;
 
+import Class.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,36 +18,49 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Detonador
  */
-@WebServlet(name = "UsuarioDAO", urlPatterns = {"/UsuarioDAO"})
-public class UsuarioDAO extends HttpServlet {
+public class Login extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UsuarioDAO</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UsuarioDAO at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        String status = "";
+        /* metodo para redirecionar paginas */
+        RequestDispatcher rd = null;
+
+        Usuarios usuarios = new Usuarios();
+        usuarios.setLogin(login);
+        usuarios.setSenha(senha);
+
+        /* estrutura de condição para redirecionar as paginas caso o login esteja correto ou não*/
+        if (usuarios.vrificarUsuario()) {
+            rd = request.getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+        } else {
+            rd = request.getRequestDispatcher("/teste.jspf");
+            rd.forward(request, response);
         }
+
+        /*  
+         try (PrintWriter out = response.getWriter()) {
+         out.println("<!DOCTYPE html>");
+         out.println("<html>");
+         out.println("<head>");
+         out.println("<title>Servlet Login</title>");            
+         out.println("</head>");
+         out.println("<body>");
+         out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
+         out.println("</body>");
+         out.println("</html>");
+         }
+    
+         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
