@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
             rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         } else {
-            rd = request.getRequestDispatcher("/teste.jspf");
+            rd = request.getRequestDispatcher("/teste.jsp");
             rd.forward(request, response);
         }
 
